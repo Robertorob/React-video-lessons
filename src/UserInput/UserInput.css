@@ -1,0 +1,6 @@
+.person-card{
+  border: thick double #434546;
+  padding: 15px;
+  display: inline-block;
+  margin: 15px;
+}
