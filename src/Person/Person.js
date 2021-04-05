@@ -10,10 +10,6 @@ const person = (props) => {
     props.nameChangedHandler(e, props.id)
   }
 
-  const deleteHandler = () => {
-    props.deleteHandler(props.id);
-  }
-
   return (
   <div className='person-card'>
     <div className='margin-sides-15'>
@@ -26,7 +22,7 @@ const person = (props) => {
         onChange={changeNameHandler} 
         placeholder='type my name'
         value={name} />
-      <button onClick={deleteHandler}>Delete</button>
+      <button onClick={() => props.deleteHandler(props.id)}>Delete</button>
     </div>
     <div className='person-card'>
       <span>This is my children</span>

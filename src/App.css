@@ -30,6 +30,16 @@
   height: 40px;
 }
 
+.toggle-button-green{
+  background-color: green;
+  color: white;
+}
+
+.toggle-button-red{
+  background-color: green;
+  color: white;
+}
+
 .toggle-button-div{
   margin-top:5px;
   margin-bottom: 5px;

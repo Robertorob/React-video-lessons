@@ -14,7 +14,7 @@ const Validation = (props) => {
 
   return (
     validationFailed(props) &&
-    <div style={{'color':'red', 'margin-top':'4px'}}>
+    <div style={{'color':'red', 'marginTop':'4px'}}>
       <p>Username is too {message}!</p>
     </div>
   );
