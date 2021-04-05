@@ -4,6 +4,7 @@ import UserInput from './UserInput/UserInput';
 import Person from './Person/Person';
 import Validation from './Validation/Validation';
 import Char from './Char/Char';
+import {ButtonState} from './Types/ButtonState'
 
 class App extends Component {
   state = {
@@ -14,7 +15,6 @@ class App extends Component {
       {id: 2, name: 'Max', age: 23}, 
       {id: 3, name: 'Stephanie', age: 18}
     ],
-    buttonState: 'green'
   }
 
   usernameChangedHandler = (event) => {
@@ -24,9 +24,9 @@ class App extends Component {
   }
 
   togglePersonsHandler = () => {
-    const currentState = this.state.showPersons;
+    let {showPersons} = this.state;
     this.setState({
-      showPersons: !currentState
+      showPersons: !showPersons,
     });
   }
   
@@ -57,17 +57,14 @@ class App extends Component {
 
   render() {
     let persons = null;
+    let buttonClassName = 'background-green';
     if (this.state.showPersons) {
+      buttonClassName = 'background-red';
       persons = (
         <div>
           {this.state.persons.map(f => <Person id={f.id} key={f.id} name={f.name} age={f.age} deleteHandler={this.deletePersonHandler} nameChangedHandler={this.nameChangedHandler}/>)}
         </div>
       );
-    }
-
-    let buttonClassName = 'toggle-button-green';
-    if (this.state.buttonState === 'red') {
-      buttonClassName = 'toggle-button-red';
     }
 
     // Здесь передаём в deleteCharHandler параметр index сразу, используя лямбда выражение.
