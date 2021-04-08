@@ -4,6 +4,7 @@ import UserInput from './UserInput/UserInput';
 import Person from './Person/Person';
 import Validation from './Validation/Validation';
 import Char from './Char/Char';
+import {StyleRoot} from 'radium';
 import {ButtonState} from './Types/ButtonState'
 
 class App extends Component {
@@ -96,30 +97,44 @@ class App extends Component {
     // а внутри компонента мы передаём в обработчик лямбду, и уже там достаём из пропсов нужный параметр
     const charList = this.state.username.split('').map((f, index) => <Char character={f} key={index} click={() => this.deleteCharHandler(index)} />);
 
+    const toggleButtonStyle = {
+      '@media (max-width: 1000px)': {
+        width: '100%',
+      },
+      '@media (min-width: 1000px)': {
+        width: '200px',
+      },
+    }
+
     return (
-      <div className="App">
-        <div className='app-content'>
-          <div className='username-section'>
-            <h3>{this.state.username}</h3>
-            <p style={{'marginBottom':'5px'}}>The header is my username. If you type it in the below input, it will be passed from the child component</p>
-            <UserInput changed={this.usernameChangedHandler} username={this.state.username} />
-            <Validation inputLength={this.state.username.length} minLength={5} maxLength={15} />
-            {charList}
-            <div className='margin-top-bottom-15'>
-              <p>This is the list in the parent component</p>
-              <ul>
-                {this.state.persons.map(f => <li className={f.hover ? 'hover-person' : ''} key={f.id}>{f.name}</li>)}
-              </ul>
+      <StyleRoot>
+        <div className="App">
+          <div className='app-content'>
+            <div className='username-section'>
+              <h3>{this.state.username}</h3>
+              <p style={{'marginBottom':'5px'}}>The header is my username. If you type it in the below input, it will be passed from the child component</p>
+              <UserInput changed={this.usernameChangedHandler} username={this.state.username} />
+              <Validation inputLength={this.state.username.length} minLength={5} maxLength={15} />
+              {charList}
+              <div className='margin-top-bottom-15'>
+                <p>This is the list in the parent component</p>
+                <ul>
+                  {this.state.persons.map(f => <li className={f.hover ? 'hover-person' : ''} key={f.id}>{f.name}</li>)}
+                </ul>
+              </div>
+            </div>
+            <div className='toggle-button-div'>
+              <button 
+                className={`toggle-button ${buttonClassName}`}
+                style={toggleButtonStyle}
+                onClick={this.togglePersonsHandler}>Toggle</button>
+            </div>
+            <div>
+              {persons}
             </div>
           </div>
-          <div className='toggle-button-div'>
-            <button className={`toggle-button ${buttonClassName}`} onClick={this.togglePersonsHandler}>Toggle</button>
-          </div>
-          <div>
-            {persons}
-          </div>
         </div>
-      </div>
+      </StyleRoot>
     );
 
     // The code above is compiled into something like this. That's why we need to import React from 'react' module

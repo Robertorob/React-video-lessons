@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Person.css';
+import Radium from 'radium';
 
 const person = (props) => {
 
@@ -8,6 +9,12 @@ const person = (props) => {
   const changeNameHandler = (e) => {
     setName(e.target.value);
     props.nameChangedHandler(e, props.person.id)
+  }
+
+  const buttonStyle = {
+    ':hover': {
+      backgroundColor: 'salmon'
+    }
   }
 
   return (
@@ -24,7 +31,10 @@ const person = (props) => {
         onChange={changeNameHandler} 
         placeholder='type my name'
         value={name} />
-      <button onClick={() => props.deleteHandler(props.person.id)}>Delete</button>
+      <button
+        style={buttonStyle}
+        onClick={() => props.deleteHandler(props.person.id)}>
+          Delete</button>
     </div>
     <div className='person-card'>
       <span>This is my children</span>
@@ -36,4 +46,4 @@ const person = (props) => {
 
 
 
-export default person;
+export default Radium(person);

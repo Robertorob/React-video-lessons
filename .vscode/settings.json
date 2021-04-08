@@ -1,5 +1,4 @@
 {
-  "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 200,
   "editor.minimap.enabled": false,
   "editor.detectIndentation": false,
