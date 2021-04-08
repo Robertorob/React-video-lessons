@@ -11,9 +11,10 @@ class App extends Component {
     username: 'robertorob',
     showPersons: false,
     persons: [
-      {id: 1, name: 'John', age: 28},
-      {id: 2, name: 'Max', age: 23}, 
-      {id: 3, name: 'Stephanie', age: 18}
+      {id: 1, name: 'John', age: 28, hover: false},
+      {id: 2, name: 'Max', age: 23, hover: false}, 
+      {id: 3, name: 'Stephanie', age: 18, hover: false},
+      {id: 4, name: 'Jordan', age: 32, hover: false},
     ],
   }
 
@@ -46,6 +47,20 @@ class App extends Component {
     const newPersons = persons.filter(f => f.id !== id);
     this.setState({persons: newPersons});
   }
+  
+  mouseEnterPersonHandler = (index) => {
+    this.setPersonsHovered(true, index);
+  }
+  
+  mouseLeavePersonHandler = (index) => {
+    this.setPersonsHovered(false, index);
+  }
+  
+  setPersonsHovered = (value, index) => {
+    let persons = [...this.state.persons];
+    persons[index].hover = value;
+    this.setState({persons: persons});
+  }
 
   deleteCharHandler = (index) => {
     let chars = this.state.username.split('');
@@ -62,7 +77,16 @@ class App extends Component {
       buttonClassName = 'background-red';
       persons = (
         <div>
-          {this.state.persons.map(f => <Person id={f.id} key={f.id} name={f.name} age={f.age} deleteHandler={this.deletePersonHandler} nameChangedHandler={this.nameChangedHandler}/>)}
+          {this.state.persons.map((person, index) => 
+            <Person
+              person={person}
+              key={person.id}
+              index={index}
+              deleteHandler={this.deletePersonHandler} 
+              nameChangedHandler={this.nameChangedHandler}
+              mouseEnterHandler={this.mouseEnterPersonHandler}
+              mouseLeaveHandler={this.mouseLeavePersonHandler}
+            />)}
         </div>
       );
     }
@@ -84,7 +108,7 @@ class App extends Component {
             <div className='margin-top-bottom-15'>
               <p>This is the list in the parent component</p>
               <ul>
-                {this.state.persons.map(f => <li key={f.id}>{f.name}</li>)}
+                {this.state.persons.map(f => <li className={f.hover ? 'hover-person' : ''} key={f.id}>{f.name}</li>)}
               </ul>
             </div>
           </div>

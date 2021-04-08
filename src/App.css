@@ -39,6 +39,11 @@
   background-color: red;
 }
 
+.hover-person{
+  color: green;
+  font-weight: bold;
+}
+
 .toggle-button-div{
   margin-top:5px;
   margin-bottom: 5px;
