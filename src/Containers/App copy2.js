@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
-import Person from './Person/Person'
-import UserInput from './UserInput/UserInput';
-import UserOutput from './UserOutput/UserOutput';
+import Person from '../Person/Person'
+import UserInput from '../UserInput/UserInput';
+import UserOutput from '../UserOutput/UserOutput';
 
 const app = (props) => { 
   const [ personsState, setPersonsState ] = useState(
