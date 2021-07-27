@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Person.css';
+// Нужен для псевдоклассов
 import Radium from 'radium';
 
 const person = (props) => {

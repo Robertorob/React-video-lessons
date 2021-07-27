@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import PersonsCards from './../Person/PersonsCards'
-import TabPanel from '../Tabs/TabPanel';
-import { withStyles } from '@material-ui/styles';
-
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import { withStyles } from '@material-ui/styles';
+
+import PersonsCards from './../Person/PersonsCards'
+import TabPanel from '../Tabs/TabPanel';
 
 const styles = theme => ({
   root: {
@@ -39,23 +39,22 @@ class App extends Component {
 
     return (
       <div className={classes.root}>
-      <AppBar position="static">
-        <Tabs value={this.state.value} onChange={this.handleChange} aria-label="simple tabs example">
-          <Tab label="Persons Cards" {...this.a11yProps(0)} />
-          <Tab label="Item Two" {...this.a11yProps(1)} />
-          <Tab label="Item Three" {...this.a11yProps(2)} />
-        </Tabs>
-      </AppBar>
-      <TabPanel value={this.state.value} index={0}>
-        <PersonsCards />
-      </TabPanel>
-      <TabPanel value={this.state.value} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={this.state.value} index={2}>
-        Item Three
-      </TabPanel>
-    </div>
+        <AppBar position="static">
+          <Tabs value={this.state.value} onChange={this.handleChange} aria-label="simple tabs example">
+            <Tab label="Persons Cards" {...this.a11yProps(0)} />
+            <Tab label="Item Two" {...this.a11yProps(1)} />
+            <Tab label="Item Three" {...this.a11yProps(2)} />
+          </Tabs>
+        </AppBar>
+        <TabPanel value={this.state.value} index={0}>
+          <PersonsCards />
+        </TabPanel>
+        <TabPanel value={this.state.value} index={1}>
+        </TabPanel>
+        <TabPanel value={this.state.value} index={2}>
+          Item Three
+        </TabPanel>
+      </div>
     );
 
     // The code above is compiled into something like this. That's why we need to import React from 'react' module
