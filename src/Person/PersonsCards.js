@@ -75,7 +75,7 @@ class PersonsCards extends Component {
     let persons = null;
     let buttonClassName = 'background-green';
     if (this.state.showPersons) {
-      buttonClassName = 'background-red';
+      buttonClassName = 'background-red';// TODO: use classNames
       persons = (
         <div>
           {this.state.persons.map((person, index) => 

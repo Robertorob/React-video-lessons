@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/styles';
 
 import PersonsCards from './../Person/PersonsCards'
 import TabPanel from '../Tabs/TabPanel';
+import ReduxApp from './ReduxApp';
 
 const styles = theme => ({
   root: {
@@ -41,15 +42,16 @@ class App extends Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Tabs value={this.state.value} onChange={this.handleChange} aria-label="simple tabs example">
+            <Tab label="Redux" {...this.a11yProps(1)} />
             <Tab label="Persons Cards" {...this.a11yProps(0)} />
-            <Tab label="Item Two" {...this.a11yProps(1)} />
             <Tab label="Item Three" {...this.a11yProps(2)} />
           </Tabs>
         </AppBar>
         <TabPanel value={this.state.value} index={0}>
-          <PersonsCards />
+          <ReduxApp></ReduxApp>
         </TabPanel>
         <TabPanel value={this.state.value} index={1}>
+          <PersonsCards />
         </TabPanel>
         <TabPanel value={this.state.value} index={2}>
           Item Three
