@@ -18,11 +18,13 @@ const ReduxApp = () => {
           <PostForm />
         </div>
       </div>
-      <div className='row'>
+      <div className='row mt-5'>
         <div className='col'>
+          <h3>Posts</h3>
           <Posts posts={posts} />
         </div>
         <div className='col'>
+          <h3>Async posts</h3>
           <FetchedPosts />
         </div>
       </div>
