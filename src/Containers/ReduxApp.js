@@ -4,13 +4,6 @@ import PostForm from '../Posts/PostForm';
 import Posts from '../Posts/Posts';
 
 const ReduxApp = () => {
-
-  const posts = [
-    {title: 'post 1', id: 1},
-    {title: 'post 2', id: 2},
-    {title: 'post 3', id: 3},
-  ];
-
   return (
     <div className='container pt-3'> 
       <div className='row'>
@@ -21,7 +14,7 @@ const ReduxApp = () => {
       <div className='row mt-5'>
         <div className='col'>
           <h3>Posts</h3>
-          <Posts posts={posts} />
+          <Posts />
         </div>
         <div className='col'>
           <h3>Async posts</h3>
