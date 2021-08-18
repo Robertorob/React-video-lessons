@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createPost, addAlert, } from '../redux/actions';
+import { AlertType } from '../Types/AlertType';
 
 class PostForm extends React.Component {
   constructor(props){
@@ -12,15 +13,29 @@ class PostForm extends React.Component {
     };
   }
 
+  validateForm = () => {
+    const { title, body } = this.state;
+    let formIsValid = true;
+
+    if (!title.trim()) {
+      this.props.addAlert(AlertType.TitleEmpty);
+      formIsValid = false;
+    }
+    if (!body.trim()) {
+      this.props.addAlert(AlertType.BodyEmpty);
+      formIsValid = false;
+    }
+
+    return formIsValid;
+  }
+
   submitHandler = event => {
     event.preventDefault();
 
-    const {title, body} = this.state;
-
-    if (!title.trim()) {
-      this.props.addAlert('Please fill the title');
+    if (!this.validateForm())
       return;
-    }
+      
+    const {title, body} = this.state;
 
     const newPost = {
       id: Date.now().toString(),

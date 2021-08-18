@@ -26,10 +26,10 @@ export function hideLoader() {
   }
 }
 
-export function addAlert(text) {
+export function addAlert(alertType) {
   return {
     type: ADD_ALERT,
-    payload: text,
+    payload: alertType,
   }
 }
 

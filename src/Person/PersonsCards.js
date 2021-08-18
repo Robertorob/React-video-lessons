@@ -5,7 +5,6 @@ import Person from './Person';
 import Validation from '../Validation/Validation';
 import Char from '../Char/Char';
 import {StyleRoot} from 'radium';
-import {ButtonState} from '../Types/ButtonState'
 
 class PersonsCards extends Component {
   state = {
