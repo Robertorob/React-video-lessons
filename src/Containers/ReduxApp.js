@@ -6,11 +6,11 @@ import { useSelector } from 'react-redux';
 import Alert from '../components/alert';
 
 const ReduxApp = () => {
-  const alertState = useSelector(state => state.app.alert);
+  const alerts = useSelector(state => state.app.alerts);
 
   return (
     <div className='container'>
-      {alertState.visible && <Alert text={alertState.text}/>}
+      {alerts.map(alert => <Alert alert={alert}/>)}
       <div className='row'>
         <div className='col'>
           <PostForm />

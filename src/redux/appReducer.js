@@ -1,13 +1,18 @@
-import { HIDE_LOADER, SHOW_ALERT, SHOW_LOADER, HIDE_ALERT } from "./types";
+import { 
+  HIDE_LOADER, 
+  SHOW_LOADER, 
+  ADD_ALERT,
+  DELETE_ALERT,
+} from "./types";
 
 const alertInitial = {
-  visible: true,
-  text: 'asdfasdf asdfsadf',
+  id: Date.now().toString(),
+  text: 'Test alert',
 }
 
 const initialState = {
   loading: false,
-  alert: alertInitial,
+  alerts: [alertInitial],
 }
 
 export const appReducer = (state = initialState, action) => {
@@ -22,18 +27,21 @@ export const appReducer = (state = initialState, action) => {
         ...state,
         loading: false
       }
-    case SHOW_ALERT:
+    case ADD_ALERT:
       return {
         ...state,
-        alert: {
-          visible: true,
-          text: action.payload
-        },
+        alerts: [
+          ...state.alerts,
+          {
+            id: Date.now().toString(),
+            text: action.payload
+          }
+        ],
       }
-    case HIDE_ALERT:
+    case DELETE_ALERT:
       return {
         ...state,
-        alert: {...alertInitial},
+        alerts: state.alerts.filter(alert => alert.id !== action.payload),
     }
 
     default: return state;

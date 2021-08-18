@@ -1,10 +1,10 @@
 import { 
   CREATE_POST, 
   FETCH_POSTS, 
-  HIDE_ALERT, 
   HIDE_LOADER, 
-  SHOW_ALERT, 
-  SHOW_LOADER 
+  SHOW_LOADER, 
+  ADD_ALERT,
+  DELETE_ALERT,
 } from "./types";
 
 export function createPost(post) {
@@ -26,17 +26,17 @@ export function hideLoader() {
   }
 }
 
-export function showAlert(text) {
+export function addAlert(text) {
   return {
-    type: SHOW_ALERT,
+    type: ADD_ALERT,
     payload: text,
   }
 }
 
-export function hideAlert(text) {
+export function deleteAlert(id) {
   return {
-    type: HIDE_ALERT,
-    payload: text,
+    type: DELETE_ALERT,
+    payload: id,
   }
 }
 

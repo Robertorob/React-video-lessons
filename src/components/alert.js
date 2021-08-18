@@ -1,6 +1,14 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteAlert } from '../redux/actions';
 
-const Alert = ({text}) => {
+const Alert = ({alert}) => {
+  const dispatch = useDispatch();
+
+  const deleteAlertHandler = () => {
+    dispatch(deleteAlert(alert.id))
+  }
+
   return (
     <div 
       className="alert alert-danger" 
@@ -13,8 +21,9 @@ const Alert = ({text}) => {
         'padding-top': '3px',
         'padding-bottom': '3px',
     }}>
-      <span>{text}</span>
-      <button 
+      <span>{alert.text}</span>
+      <button
+        onClick={deleteAlertHandler}
         type="button" 
         className="btn"
         style={{

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createPost, showAlert, hideAlert } from '../redux/actions';
+import { createPost, addAlert, } from '../redux/actions';
 
 class PostForm extends React.Component {
   constructor(props){
@@ -18,7 +18,7 @@ class PostForm extends React.Component {
     const {title, body} = this.state;
 
     if (!title.trim()) {
-      this.props.showAlert('Please fill the title');
+      this.props.addAlert('Please fill the title');
       return;
     }
 
@@ -73,8 +73,7 @@ class PostForm extends React.Component {
 
 const mapDispatchToProps = {
   createPost,
-  showAlert,
-  hideAlert,
+  addAlert,
 }
 
 export default connect(null, mapDispatchToProps)(PostForm);
