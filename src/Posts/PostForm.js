@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createPost, addAlert, } from '../redux/actions';
-import { AlertType } from '../Types/AlertType';
+import { AlertType } from '../Types/AlertTypes';
 
 class PostForm extends React.Component {
   constructor(props){

@@ -4,7 +4,7 @@ import {
   ADD_ALERT,
   DELETE_ALERT,
 } from "./types";
-import { AlertType } from '../Types/AlertType';
+import { AlertType, AlertMessages } from '../Types/AlertTypes';
 
 const alertInitial = {
   text: 'Test alert',
@@ -14,11 +14,6 @@ const alertInitial = {
 const initialState = {
   loading: false,
   alerts: [alertInitial],
-}
-
-const AlertMessages = {
-  [AlertType.TitleEmpty]: "Please fill the title",
-  [AlertType.BodyEmpty]: "Please fill the body",
 }
 
 export const appReducer = (state = initialState, action) => {

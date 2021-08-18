@@ -33,10 +33,10 @@ export function addAlert(alertType) {
   }
 }
 
-export function deleteAlert(id) {
+export function deleteAlert(type) {
   return {
     type: DELETE_ALERT,
-    payload: id,
+    payload: type,
   }
 }
 
