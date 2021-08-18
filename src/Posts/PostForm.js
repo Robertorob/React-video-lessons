@@ -1,31 +1,36 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createPost } from '../redux/actions';
+import { createPost, showAlert, hideAlert } from '../redux/actions';
 
 class PostForm extends React.Component {
   constructor(props){
     super(props);
 
     this.state = {
-      title: ''
+      title: '',
+      body: '',
     };
   }
 
   submitHandler = event => {
     event.preventDefault();
 
-    const {title} = this.state;
+    const {title, body} = this.state;
 
-    if (!title.trim())
+    if (!title.trim()) {
+      this.props.showAlert('Please fill the title');
       return;
+    }
 
     const newPost = {
-      title, id: Date.now().toString()
+      id: Date.now().toString(),
+      title, 
+      body,
     }
 
     this.props.createPost(newPost);
 
-    this.setState(prev => ({...prev, title: ''}));
+    this.setState(prev => ({...prev, title: '', body: ''}));
   }
 
   changeInputHandler = event => {
@@ -51,6 +56,15 @@ class PostForm extends React.Component {
             onChange={this.changeInputHandler}
           />
         </div>
+        <div className='form-group mt-2'>
+          <label htmlFor='body'>Body</label>
+          <textarea 
+            className='form-control' 
+            id='body'
+            value={this.state.body}
+            onChange={this.changeInputHandler}
+          />
+        </div>
         <button className='btn btn-success mt-3' type='submit'>Create</button>
       </form>
     );
@@ -58,7 +72,9 @@ class PostForm extends React.Component {
 }
 
 const mapDispatchToProps = {
-  createPost
+  createPost,
+  showAlert,
+  hideAlert,
 }
 
 export default connect(null, mapDispatchToProps)(PostForm);

@@ -2,16 +2,21 @@ import React from 'react';
 import FetchedPosts from '../Posts/FetchedPosts';
 import PostForm from '../Posts/PostForm';
 import Posts from '../Posts/Posts';
+import { useSelector } from 'react-redux';
+import Alert from '../components/alert';
 
 const ReduxApp = () => {
+  const alertState = useSelector(state => state.app.alert);
+
   return (
-    <div className='container pt-3'> 
+    <div className='container'>
+      {alertState.visible && <Alert text={alertState.text}/>}
       <div className='row'>
         <div className='col'>
           <PostForm />
         </div>
       </div>
-      <div className='row mt-5'>
+      <div className='row mt-3'>
         <div className='col'>
           <h3>Posts</h3>
           <Posts />
