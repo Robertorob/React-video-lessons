@@ -15,11 +15,11 @@ const Alert = ({alert}) => {
       role="alert" 
       style={{
         'display':'flex', 
-        'flex-direction':'row', 
-        'justify-content': 'space-between', 
-        'align-items': 'center', 
-        'padding-top': '3px',
-        'padding-bottom': '3px',
+        'flexDirection':'row', 
+        'justifyContent': 'space-between', 
+        'alignItems': 'center', 
+        'paddingTop': '3px',
+        'paddingBottom': '3px',
     }}>
       <span>{alert.text}</span>
       <button
@@ -27,10 +27,10 @@ const Alert = ({alert}) => {
         type="button" 
         className="btn"
         style={{
-          'padding-top': '0',
-          'padding-bottom': '0',
+          'paddingTop': '0',
+          'paddingBottom': '0',
       }}>
-        <span style={{'font-size': '20pt', 'font-family': 'initial'}}>&times;</span>
+        <span style={{'fontSize': '20pt', 'fontFamily': 'initial'}}>&times;</span>
       </button>
     </div>
   );
