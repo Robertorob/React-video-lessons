@@ -33,7 +33,16 @@ function* requestPostsWithErrorWorker() {
               if (success) {
                 return resolve();
               }
-              return reject('My custom reject'); 
+
+              // Имитируем эксепшн
+              try {
+                const variable = {};
+                variable.text.toString();
+              }
+              catch (e) {
+                return reject(e.message);
+              }
+
             }, duration);
         });
 
