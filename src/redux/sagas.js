@@ -56,8 +56,8 @@ function* requestPostsWithErrorWorker() {
 async function fetchPosts() {
   try {
     const response = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=5');
-    const sleep = duration => new Promise((resolve, reject) => {
-      setTimeout(() => reject('My custom reject'), duration);
+    const sleep = duration => new Promise(resolve => {
+      setTimeout(resolve, duration);
     });
     await sleep(1000);
     return await response.json();

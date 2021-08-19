@@ -21,8 +21,9 @@ export default () => {
 
   if (!posts || !posts.length) 
     return (
-      <div>
+      <div style={{'display': 'flex', 'justifyContent':'flex-start'}}>
         <button onClick={uploadHandler} className='btn btn-primary'>Upload</button>
+        <span>&nbsp;</span>
         <button onClick={simulateError} className='btn btn-primary'>Error</button>
       </div>
     )
