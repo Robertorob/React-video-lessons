@@ -18,11 +18,11 @@ class PostForm extends React.Component {
     let formIsValid = true;
 
     if (!title.trim()) {
-      this.props.addAlert(AlertType.TitleEmpty);
+      this.props.addAlert({type:AlertType.TitleEmpty});
       formIsValid = false;
     }
     if (!body.trim()) {
-      this.props.addAlert(AlertType.BodyEmpty);
+      this.props.addAlert({type:AlertType.BodyEmpty});
       formIsValid = false;
     }
 

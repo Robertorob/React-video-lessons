@@ -6,7 +6,9 @@ import {
 } from "./types";
 import { AlertType, AlertMessages } from '../Types/AlertTypes';
 
+
 const alertInitial = {
+  id: 'test',
   text: 'Test alert',
   type: AlertType.Test,
 }
@@ -29,24 +31,30 @@ export const appReducer = (state = initialState, action) => {
         loading: false
       }
     case ADD_ALERT:
-      if (state.alerts.filter(alert => alert.type === action.payload).length > 0)
+      if (state.alerts.filter(alert => alert.type === action.payload.type && alert.type !== AlertType.Custom).length > 0)
         return state;
+
+      const newAlert = {
+        id: action.payload.id,
+        text: AlertMessages[action.payload.type],
+        type: action.payload.type,
+      }
+
+      if (action.payload.type === AlertType.Custom) {
+        newAlert.text = action.payload.text;
+      }
       
       return {
         ...state,
         alerts: [
           ...state.alerts,
-          {
-            id: Date.now().toString(),
-            text: AlertMessages[action.payload],
-            type: action.payload,
-          }
+          newAlert,
         ],
       }
     case DELETE_ALERT:
       return {
         ...state,
-        alerts: state.alerts.filter(alert => alert.type !== action.payload),
+        alerts: state.alerts.filter(alert => alert.id !== action.payload),
     }
 
     default: return state;

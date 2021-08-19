@@ -6,7 +6,7 @@ const Alert = ({alert}) => {
   const dispatch = useDispatch();
 
   const deleteAlertHandler = () => {
-    dispatch(deleteAlert(alert.type))
+    dispatch(deleteAlert(alert.id))
   }
 
   return (
