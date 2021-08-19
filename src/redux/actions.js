@@ -1,11 +1,11 @@
-import { AlertType } from "../Types/AlertTypes";
 import { 
   CREATE_POST, 
-  FETCH_POSTS, 
+  REQUEST_POSTS,
   HIDE_LOADER, 
   SHOW_LOADER, 
   ADD_ALERT,
   DELETE_ALERT,
+  REQUEST_POSTS_WITH_ERROR,
 } from "./types";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -30,6 +30,7 @@ export function hideLoader() {
 
 export function addAlert(alert) {
   alert.id = uuidv4();
+  // Это благодаря tnunk
   return dispatch => {
     dispatch({
       type: ADD_ALERT,
@@ -38,7 +39,7 @@ export function addAlert(alert) {
 
     setTimeout(() => {
       dispatch(deleteAlert(alert.id));
-    }, 5000);
+    }, 7000);
   }
 }
 
@@ -50,24 +51,13 @@ export function deleteAlert(id) {
 }
 
 export function fetchPosts() {
-  return async dispatch => {
+  return {
+    type: REQUEST_POSTS,
+  }
+}
 
-    try {
-      dispatch(showLoader());
-  
-      const response = await fetch('https://jsonplaceholder.typicode.co/posts?_limit=5')
-      const json = await response.json();
-      console.log('json ' + json);
-      
-      setTimeout(() => {
-        dispatch({type: FETCH_POSTS, payload: json});
-        dispatch(hideLoader());
-      }, 2000);
-    }
-    catch (error) {
-      console.log(error);
-      dispatch(addAlert({type: AlertType.Custom, text: error.message}));
-      dispatch(hideLoader());
-    }
+export function fetchPostsWithError() {
+  return {
+    type: REQUEST_POSTS_WITH_ERROR,
   }
 }

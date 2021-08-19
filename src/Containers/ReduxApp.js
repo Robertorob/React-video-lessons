@@ -10,7 +10,7 @@ const ReduxApp = () => {
 
   return (
     <div className='container'>
-      {alerts.map(alert => <Alert alert={alert}/>)}
+      {alerts.map(alert => <Alert alert={alert} key={alert.id}/>)}
       <div className='row'>
         <div className='col'>
           <PostForm />
