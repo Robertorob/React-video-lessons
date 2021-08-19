@@ -22,35 +22,35 @@ function* requestPostsWorker() {
 }
 
 function* requestPostsWithErrorWorker() {
-  // try {
-  //   yield put(showLoader());
+  try {
+    yield put(showLoader());
 
-  //   yield call(() => {
-  //     try {
-  //       const sleep = duration => new Promise((resolve, reject) => {
-  //         setTimeout(() => { 
-  //             // do some stuff
-  //             const success = false;
-  //             if (success) {
-  //               return resolve();
-  //             }
-  //             return reject('My custom reject'); 
-  //           }, duration);
-  //       });
-  //       await sleep(1000);
-  //     }
-  //     catch (e) {
-  //       console.log('error in fetch posts');
-  //       throw e;
-  //     };
-  //   });
+    yield call(async () => {
+      try {
+        const sleep = duration => new Promise((resolve, reject) => {
+          setTimeout(() => { 
+              const success = false;
+              if (success) {
+                return resolve();
+              }
+              return reject('My custom reject'); 
+            }, duration);
+        });
 
-  //   yield put(hideLoader());
-  // }
-  // catch (e) {
-  //   yield put(hideLoader());
-  //   yield put(addAlert({type: AlertType.Custom, text: e}));
-  // }
+        await sleep(1000);
+      }
+      catch (e) {
+        console.log('error in fetch posts');
+        throw e;
+      }
+    });
+
+    yield put(hideLoader());
+  }
+  catch (e) {
+    yield put(hideLoader());
+    yield put(addAlert({type: AlertType.Custom, text: e}));
+  }
 }
 
 async function fetchPosts() {
