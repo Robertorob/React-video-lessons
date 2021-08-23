@@ -10,6 +10,7 @@ export function* sagaWatcher() {
 
 function* requestPostsWorker() {
   try {
+    // Здесь мы йелдим объекты, которые описывают действия (Effects), по аналогии с редаксом, где мы диспатчим экшоны
     yield put(showLoader());
     const payload = yield call(fetchPosts);
     yield put({type: FETCH_POSTS, payload});
